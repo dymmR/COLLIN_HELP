@@ -22,11 +22,7 @@ class IMU_Thread:
     def release_imu_thread(self):
         self.imu_condition.release()
 
-
-
-
     def imu_loop(self):
-
             self.init_imu_thread()
             self.imu.read_all_sensors()
             print('imu read')
@@ -34,12 +30,8 @@ class IMU_Thread:
             #self.release_imu_thread()
             self.imu.imu_delay()
 
-
-
-
     def imu_run(self):
-        while self.imu.sensor_error==0:
-
+        while self.imu.sensor_error == 0:
             self.imu_loop()
 
 

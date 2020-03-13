@@ -126,5 +126,5 @@ class IMU:
             snsr.gy = self.gx
             snsr.gz = self.gx
 
-
+        return self.sensors
 

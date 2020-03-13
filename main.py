@@ -1,16 +1,18 @@
 #!/usr/bin/python3
 from threading import Thread, enumerate
-from IMU_thread import IMU_Thread
+from IMU_thread_v2 import IMU_Thread
 from algo_process import Algo
 from Bluetooth_thread import BT_Thread
 import time
 from GPIO_functions import pi_GPIO
+from multiprocessing import Pipe
 
 
+[imu_handler_pipe, imu_pipe] = Pipe(duplex=True)
 
 
 bt=BT_Thread()
-imu=IMU_Thread()
+imu=IMU_Thread(imu_pipe)
 gp=pi_GPIO()
 algo=Algo()
 
