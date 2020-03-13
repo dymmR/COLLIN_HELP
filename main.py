@@ -64,8 +64,8 @@ algo_thread.start()
 imu_thread.start()
 
 while True:
+    time.sleep(0.1)
     pass
-
 
 
 

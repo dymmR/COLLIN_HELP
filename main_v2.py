@@ -1,4 +1,4 @@
-from threading import Thread
+from threading import Thread, Event
 from IMU_thread_v2 import IMU_Thread
 import time
 from multiprocessing import Pipe
@@ -8,6 +8,8 @@ from multiprocessing import Pipe
 runtime = 5
 
 ########### CODE
+
+killEvent = Event()
 
 print("Initializing IMU Object")
 [imu_handler_pipe, imu_pipe] = Pipe(duplex=True)
@@ -27,6 +29,8 @@ while time.time() - start_time < runtime:
         print(data)
 
     time.sleep(0.1)
+
+killEvent.wait()
 
 print("Killing IMU Thread")
 imu_handler_pipe.send("kill")
